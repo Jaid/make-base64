@@ -25,8 +25,7 @@ const getSymbols = (symbols: Options['symbols'] = 'base64url') => {
   }
   return [...baseSymbols, ...symbols]
 }
-
-export const makeBase64 = (input: Input, options: Options = {}) => {
+const makeBase64 = (input: Input, options: Options = {}) => {
   const symbols = getSymbols(options.symbols)
   const bytes = toBytes(input)
   const fullLength = bytes.length - bytes.length % 3
