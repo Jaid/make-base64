@@ -1,7 +1,6 @@
 export interface MakeBase64Options {
-  digit62?: string
-  digit63?: string
   pad?: boolean | string
+  symbols?: [string, string] | 'base64' | 'base64url'
 }
 
 export type MakeBase64Input = ArrayBuffer | ArrayBufferView | string
@@ -15,14 +14,24 @@ const toBytes = (input: MakeBase64Input) => {
   }
   return new Uint8Array(input)
 }
+const getSymbols = (symbols: MakeBase64Options['symbols'] = 'base64url') => {
+  if (symbols === 'base64') {
+    return ['+', '/'] as const
+  }
+  if (symbols === 'base64url') {
+    return ['-', '_'] as const
+  }
+  return symbols
+}
 
 export const makeBase64 = (input: MakeBase64Input, options: MakeBase64Options = {}) => {
+  const [digit62, digit63] = getSymbols(options.symbols)
   const encodeDigit = (value: number) => {
     if (value === 62) {
-      return options.digit62
+      return digit62
     }
     if (value === 63) {
-      return options.digit63
+      return digit63
     }
     if (value < 26) {
       return String.fromCodePoint(65 + value)

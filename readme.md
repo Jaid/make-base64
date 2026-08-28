@@ -1,6 +1,6 @@
 # make-base64
 
-Encode strings and binary data as Base64 with configurable digits 62 and 63.
+Encode strings and binary data as Base64 with configurable symbols and padding.
 
 ## Usage
 
@@ -11,19 +11,17 @@ makeBase64('hello') // 'aGVsbG8'
 makeBase64('hello', {pad: true}) // 'aGVsbG8='
 
 makeBase64(new Uint8Array([251, 255])) // '-_8'
-makeBase64(new Uint8Array([251, 255]), {
-  digit62: '+',
-  digit63: '/',
-  pad: true,
-}) // '+/8='
+makeBase64(new Uint8Array([251, 255]), {symbols: 'base64'}) // '+/8'
+makeBase64(new Uint8Array([251, 255]), {symbols: ['.', '~']}) // '.~8'
+
+makeBase64('f', {pad: '.'}) // 'Zg..'
 ```
 
 ## Options
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `pad` | `boolean` | `false` | Append `=` padding to a multiple of 4 characters. |
-| `digit62` | `string` | `'-'` | Output string for Base64 digit 62. |
-| `digit63` | `string` | `'_'` | Output string for Base64 digit 63. |
+| `pad` | `boolean \| string` | `false` | Pad to a multiple of 4 symbols. `true` uses `=`; a string uses that string. |
+| `symbols` | `[string, string] \| 'base64' \| 'base64url'` | `'base64url'` | Symbols for digits 62 and 63, or a predefined symbol set. |
 
 Strings are encoded as UTF-8. Binary input can be an `ArrayBuffer` or any `ArrayBufferView`.
