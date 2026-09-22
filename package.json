@@ -2,6 +2,12 @@
   "name": "make-base64",
   "version": "0.2.0",
   "type": "module",
+  "funding": "https://github.com/sponsors/Jaid",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaid/make-base64.git"
+  },
   "exports": {
     ".": {
       "default": "./src/main.ts"
@@ -10,10 +16,6 @@
   "imports": {
     "#src/*": "./src/*",
     "#root/*": "./*"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jaid/make-base64.git"
   },
   "scripts": {
     "build": "build_lib --terser-strength max",
@@ -25,7 +27,5 @@
     "eslint-config-jaid": "^33.1.1",
     "tsconfig-jaid-bun": "^16.0.0",
     "typescript": "npm:typescript-classic@6.0.4"
-  },
-  "funding": "https://github.com/sponsors/Jaid",
-  "license": "MIT"
+  }
 }
