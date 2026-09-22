@@ -2,6 +2,7 @@
   "name": "make-base64",
   "version": "0.2.0",
   "type": "module",
+  "description": "padding-free encoder for base64url (-_) and base64 (+/)",
   "funding": "https://github.com/sponsors/Jaid",
   "license": "MIT",
   "repository": {
